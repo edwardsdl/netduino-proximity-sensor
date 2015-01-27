@@ -24,11 +24,14 @@ namespace AngrySquirrel.Netduino.ProximitySensor
             // The Netduino Plus 2 has a 12 bit ADC whereas previous
             // versions had 10 bit ADCs. Because of this, the hardware
             // is checked and the appropriate maximum ADC value is used.
-            var maxAdcValue = SystemInfo.OEMString.IndexOf("Netduino Plus 2") >= 0
-                                  ? 4095
-                                  : 1023;
+            var maxAdcValue = IsRunningOnNetduinoPlus2() ? 4095 : 1023;
 
             return 3.3d * digitalVoltage / maxAdcValue;
+        }
+
+        private static bool IsRunningOnNetduinoPlus2()
+        {
+            return SystemInfo.OEMString.IndexOf("Netduino Plus 2") >= 0;
         }
 
         #endregion

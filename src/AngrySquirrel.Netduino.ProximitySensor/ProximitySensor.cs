@@ -30,9 +30,9 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// Thrown when the given <see cref="AnalogInput"/> is null
         /// </exception>
         /// <remarks>
-        /// This sensor is only provides valid results for objects farther than 3" away or <see cref="MaximumReadableDistance"/>
-        /// objects closer than from the sensor. Passing a trigger which attempts to obtain distances outside of this range will
-        /// result in a large number of false positives.
+        /// This sensor is only provides valid results for objects farther than 3" away or objects closer than
+        /// <see cref="MaximumReadableDistance"/> from the sensor. Passing a trigger which attempts to obtain
+        /// distances outside of this range will result in a large number of false positives.
         /// </remarks>
         public ProximitySensor(AnalogInput analogInput)
         {
@@ -93,13 +93,13 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         #region Methods
 
         /// <summary>
-        /// Determines the minimum distance the proximity sensor can detect an object
+        /// Determines the maximum distance the proximity sensor can detect an object
         /// </summary>
         /// <param name="analogInput">
         /// The analog input to which the proximity sensor is attached
         /// </param>
         /// <returns>
-        /// The minimum distance the proximity sensor can detect an object
+        /// The maximum distance the proximity sensor can detect an object
         /// </returns>
         private Distance GetMaximumReadableDistance(AnalogInput analogInput)
         {

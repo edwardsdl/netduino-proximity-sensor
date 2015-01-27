@@ -63,7 +63,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         }
 
         /// <summary>
-        /// Determines whether the first <see cref="Distance" /> is greater than to the second <see cref="Distance" />
+        /// Determines whether the first <see cref="Distance" /> is greater than the second <see cref="Distance" />
         /// </summary>
         /// <param name="firstDistance">
         /// The first distance
@@ -72,7 +72,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// The second distance
         /// </param>
         /// <returns>
-        /// A value indicating whether the first <see cref="Distance" /> is greater than to the second <see cref="Distance" />
+        /// A value indicating whether the first <see cref="Distance" /> is greater than the second <see cref="Distance" />
         /// </returns>
         public static bool operator >(Distance firstDistance, Distance secondDistance)
         {
@@ -80,7 +80,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         }
 
         /// <summary>
-        /// Determines whether the first <see cref="Distance" /> is less than or equal to to the second <see cref="Distance" />
+        /// Determines whether the first <see cref="Distance" /> is less than or equal to the second <see cref="Distance" />
         /// </summary>
         /// <param name="firstDistance">
         /// The first distance
@@ -89,7 +89,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// The second distance
         /// </param>
         /// <returns>
-        /// A value indicating whether the first <see cref="Distance" /> is less than or equal to to the second
+        /// A value indicating whether the first <see cref="Distance" /> is less than or equal to the second
         ///     <see cref="Distance" />
         /// </returns>
         public static bool operator >=(Distance firstDistance, Distance secondDistance)
@@ -146,8 +146,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// The second distance
         /// </param>
         /// <returns>
-        /// A value indicating whether the first <see cref="Distance" /> is greater than or equal to the second
-        ///     <see cref="Distance" />
+        /// A value indicating whether the first <see cref="Distance" /> is greater than or equal to the second <see cref="Distance" />
         /// </returns>
         public static bool operator <=(Distance firstDistance, Distance secondDistance)
         {
@@ -169,7 +168,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
             var distance = obj as Distance;
             if (distance == null)
             {
-                throw new ArgumentException("The given object is not the same type as this instance");
+                throw new ArgumentException("The given object is not of type Distance");
             }
 
             var difference = digitalVoltage - distance.digitalVoltage;
