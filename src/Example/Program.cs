@@ -18,7 +18,7 @@ namespace Example
         {
             var proximitySensorInput = new AnalogInput(Cpu.AnalogChannel.ANALOG_0);
 
-            var proximitySensor = new ProximitySensor(proximitySensorInput)
+            var proximitySensor = new ProximitySensor(ProximitySensorType.GP2Y0A21YK, proximitySensorInput)
                 {
                     IsEnabled = true, 
                     ObjectDetectionTrigger = (maximumReadableDistance, distance) => distance < maximumReadableDistance, 

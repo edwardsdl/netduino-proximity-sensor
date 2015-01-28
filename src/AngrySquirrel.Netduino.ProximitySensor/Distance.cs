@@ -13,6 +13,8 @@ namespace AngrySquirrel.Netduino.ProximitySensor
 
         private readonly int digitalVoltage;
 
+        private readonly ProximitySensorType proximitySensorType;
+
         #endregion
 
         #region Constructors and Destructors
@@ -23,10 +25,14 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// <param name="digitalVoltage">
         /// The digital output voltage from the proximity sensor
         /// </param>
-        internal Distance(int digitalVoltage)
+        /// <param name="proximitySensorType">
+        /// The type of Sharp proximity sensor being used
+        /// </param>
+        internal Distance(int digitalVoltage, ProximitySensorType proximitySensorType)
         {
             analogVoltage = AdcHelper.ToAnalogVoltage(digitalVoltage);
             this.digitalVoltage = digitalVoltage;
+            this.proximitySensorType = proximitySensorType;
         }
 
         #endregion
@@ -240,7 +246,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// </returns>
         public double ToCentimeters()
         {
-            return DistanceHelper.ToCentimeters(analogVoltage);
+            return DistanceHelper.ToCentimeters(analogVoltage, proximitySensorType);
         }
 
         /// <summary>
@@ -251,7 +257,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// </returns>
         public double ToInches()
         {
-            return DistanceHelper.ToInches(analogVoltage);
+            return DistanceHelper.ToInches(analogVoltage, proximitySensorType);
         }
 
         #endregion

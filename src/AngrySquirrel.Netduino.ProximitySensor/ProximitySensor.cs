@@ -16,6 +16,8 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// </summary>
         public readonly Distance MaximumReadableDistance;
 
+        private readonly ProximitySensorType proximitySensorType;
+
         #endregion
 
         #region Constructors and Destructors
@@ -23,6 +25,8 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// <summary>
         /// Initializes a new instance of the <see cref="ProximitySensor"/> class
         /// </summary>
+        /// <param name="proximitySensorType">
+        /// </param>
         /// <param name="analogInput">
         /// The analog input to which the proximity sensor is attached
         /// </param>
@@ -34,12 +38,14 @@ namespace AngrySquirrel.Netduino.ProximitySensor
         /// <see cref="MaximumReadableDistance"/> from the sensor. Passing a trigger which attempts to obtain
         /// distances outside of this range will result in a large number of false positives.
         /// </remarks>
-        public ProximitySensor(AnalogInput analogInput)
+        public ProximitySensor(ProximitySensorType proximitySensorType, AnalogInput analogInput)
         {
             if (analogInput == null)
             {
                 throw new ArgumentNullException("analogInput");
             }
+
+            this.proximitySensorType = proximitySensorType;
 
             MaximumReadableDistance = GetMaximumReadableDistance(analogInput);
 
@@ -49,7 +55,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
                     {
                         if (IsEnabled && ObjectDetectionTrigger != null)
                         {
-                            var distance = new Distance(analogInput.ReadRaw());
+                            var distance = new Distance(analogInput.ReadRaw(), proximitySensorType);
 
                             if (ObjectDetectionTrigger(MaximumReadableDistance, distance))
                             {
@@ -113,7 +119,7 @@ namespace AngrySquirrel.Netduino.ProximitySensor
                     : peakDigitalVoltage;
             }
 
-            return new Distance(peakDigitalVoltage);
+            return new Distance(peakDigitalVoltage, proximitySensorType);
         }
 
         #endregion
